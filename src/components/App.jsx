@@ -1,8 +1,8 @@
 
 import { Link } from "react-router-dom";
-import  FuckingWork  from "./FuckingWork";
+import  MainPage from "./MainPage";
   function App(){
-   return ( <FuckingWork></FuckingWork>)
+   return ( <MainPage></MainPage>)
   };
   
 export default App;
