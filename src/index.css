@@ -26,3 +26,35 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.image{
+    object-fit: cover;
+    max-width: 90px;
+
+}
+.card{
+    display: flex;
+    box-shadow: 10px 5px 5px red;
+    outline: 5px solid black;
+    outline-offset: -20px;
+    text-justify: center;
+    padding:20px;
+    text-transform: capitalize;
+    flex-direction: column;
+    border:5px solid red;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    width: 240px;
+}
+.cards{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:90px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,5 +1,8 @@
+import Cards from "./Cards"
+
 function Shopping(){
     return(
+        <>
         <header className = "header">
             <h1>A Certain Reactive Shopping Cart</h1>
             <div className = "buttons">
@@ -14,6 +17,8 @@ function Shopping(){
                    
             </div>
             </header>
+            <Cards></Cards>
+          </>  
     )
 
 }

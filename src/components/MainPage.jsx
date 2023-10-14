@@ -1,5 +1,6 @@
 import image from '../assets/Tokyo.jpg'
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
+import Cards from "./Cards";
 
 const MainPage = ()=>{
     return(
@@ -13,10 +14,12 @@ const MainPage = ()=>{
                     <button className="button">
                         Tensai teki na aidoru
                         </button>
-
-                        <Link className="button" to="Shopping">
+                        
+                        <Link to="Shopping">
                         <button className="button">Go Shop</button>
                         </Link>
+                        
+                        
                    
             </div>
             </header>
