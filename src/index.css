@@ -1,3 +1,14 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .header{
     display:flex;
     justify-content: space-between;
@@ -58,6 +69,13 @@
     justify-content: center;
     align-items: center;
 }
-.number{
-   
+.inputNumber{
+    max-width: 25px;
+}
+.hidden{
+    display:none
+}
+.pricetag{
+    display: flex;
+    justify-content: center;
 }
