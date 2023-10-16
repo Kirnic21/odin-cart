@@ -11,6 +11,7 @@ import { fireEvent } from "@testing-library/react";
 //mock an api call with image
 describe("Cart",()=>{
     it("should not be negative",()=>{
+        
     })
     it("should display the number based on an array length",()=>{
 
