@@ -1,5 +1,4 @@
-import Cards from "./Cards"
-
+import Cart from "./Cart"
 function Shopping(){
     return(
         <>
@@ -17,7 +16,7 @@ function Shopping(){
                    
             </div>
             </header>
-            <Cards></Cards>
+            <Cart></Cart>
           </>  
     )
 

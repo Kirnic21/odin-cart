@@ -1,6 +1,6 @@
 import image from '../assets/Tokyo.jpg'
 import { BrowserRouter, Link } from "react-router-dom";
-import Cards from "./Cards";
+
 
 const MainPage = ()=>{
     return(
