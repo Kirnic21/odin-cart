@@ -1,14 +1,22 @@
 import { useState,useEffect } from "react";
 import Card from "./Card";
 const Cart = ()=>{
-let [quantity,setQuantity] = useState([])
 const [showButton, setShowButton] = useState(true);
 const [showForm,setShowForm] = useState(false)
-let a =[]
-for(let i = 1;i <11;i++)
-{
-    a.push(i)
-}
+ let [item,setItem] = useState([])
+ let [quantity,setQuantity] = useState(0)
+useEffect(()=>{
+    const fetchData = async ()=>{
+        
+        const data = await fetch('https://fakestoreapi.com/products?limit=5')
+        const dataJson = await data.json();
+        setItem(dataJson)
+        console.log(item)
+    
+    }
+    fetchData()
+},[])
+
 const showFormToggle = (e) => {
     setShowButton(!showButton);
     setShowForm(!showForm);
@@ -42,13 +50,14 @@ const handleInputChange = (e)=>{
     quantity = e.target.value;
     setQuantity(quantity)
 }
-
+console.log(item)
 return(<div className = "cards">
-{a.map((items)=>{
+{item.map((items)=>{
+   
     return (
     <div className="item">        
         <Card
-        id={items}
+        title={items.title}
         ></Card>
     <div className = "pricetag">
     <button onClick={decreaseQuantity}>-</button>
