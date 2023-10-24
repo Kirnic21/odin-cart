@@ -10,7 +10,7 @@ let [item,setItem] = useState([])
 useEffect(()=>{
     const fetchData = async ()=>{
         
-        const data = await fetch('https://fakestoreapi.com/products?limit=5')
+        const data = await fetch('https://fakestoreapi.com/products?limit=10')
         const dataJson = await data.json();
         dataJson.map((element)=>{
             return element.quantity = 0,
@@ -113,9 +113,16 @@ const handleInputChange = (e)=>{
     
     
     let newItem = item.map((element)=>{
-        if(e.target.id === element.title && typeof(e.target.value) === "number")
+        if(e.target.id === element.title)
         {
+            console.log(typeof(e.target.value))
+            if((e.target.value/e.target.value) !== 1)
+            {
+                element.quantity = 0;
+            }
+            else{
             element.quantity = parseInt(e.target.value)
+            }
         }
         return element
     })
