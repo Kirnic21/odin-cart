@@ -29,6 +29,7 @@ input[type=number] {
 .button{
     display: flex;
     justify-content: center;
+    align-self: center;
 }
 .textInImage{
     position: absolute;

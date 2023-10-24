@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Cart from "./Cart"
 function Shopping(){
     return(
@@ -5,13 +6,14 @@ function Shopping(){
         <header className = "header">
             <h1>A Certain Reactive Shopping Cart</h1>
             <div className = "buttons">
-                <button className="button">
-                   Blah blah 
-                    </button>
-                    <button className="button">
-                        Blah 
-                        </button>
-
+            <Link className="buttons" to="/">
+                        <button className="button">Home</button>
+                </Link>
+            
+            <a className="button" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                <button>Payment</button>
+            </a>                            
+            
                 
                    
             </div>

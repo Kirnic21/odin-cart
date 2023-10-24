@@ -8,14 +8,8 @@ const MainPage = ()=>{
         <header className = "header">
             <h1>A Certain Reactive Shopping Cart</h1>
             <div className = "buttons">
-                <button className="button">
-                   Blah
-                    </button>
-                    <button className="button">
-                        Blah 
-                        </button>
-                        
-                        <Link to="Shopping">
+                
+                        <Link className='buttons' to="Shopping">
                         <button className="button">Go Shop</button>
                         </Link>
                         
