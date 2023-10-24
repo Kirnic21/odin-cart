@@ -116,8 +116,9 @@ const handleInputChange = (e)=>{
         if(e.target.id === element.title)
         {
             console.log(typeof(e.target.value))
-            if((e.target.value/e.target.value) !== 1)
+            if((e.target.value/e.target.value) !== 1 || parseInt(e.target.value) < 0)
             {
+                
                 element.quantity = 0;
             }
             else{
