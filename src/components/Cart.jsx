@@ -1,26 +1,44 @@
 import { useState,useEffect } from "react";
 import Card from "./Card";
+import cartimg from './../assets/cart.png';
+import { element, number } from "prop-types";
 const Cart = ()=>{
-const [showButton, setShowButton] = useState(true);
-const [showForm,setShowForm] = useState(false)
+let [reducer,setReduce] = useState(0);
+
 let [item,setItem] = useState([])
+
 useEffect(()=>{
     const fetchData = async ()=>{
         
         const data = await fetch('https://fakestoreapi.com/products?limit=5')
         const dataJson = await data.json();
         dataJson.map((element)=>{
-            return element.quantity = 0;
+            return element.quantity = 0,
+            element.hidden = false;
         })
         setItem(dataJson)
-        console.log(dataJson)
+        
+        
     }
     fetchData()
 },[])
 
 const showFormToggle = (e) => {
-    setShowButton(!showButton);
-    setShowForm(!showForm);
+
+   
+    let newItem = item.map((element)=>{
+        
+        
+        if(element.title === e.target.id)
+        {
+            element.hidden = true
+            
+        }
+        return element
+    })
+    
+    setItem(newItem)
+    
   }
 const decreaseQuantity = (e)=>{
     let newItem = item.map((element)=>{
@@ -38,7 +56,13 @@ const decreaseQuantity = (e)=>{
     
 
     setItem(newItem)
-
+    const itemQuantity = item.map((element)=>{
+        return element.quantity
+    })
+    let initialValue = 0;
+    let reduced =  itemQuantity.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+    console.log(reduced)
+    setReduce(reduced)
 
 }
 const increaseQuantity = (e)=>{
@@ -56,28 +80,57 @@ const increaseQuantity = (e)=>{
     
 
     setItem(newItem)
-
+    const itemQuantity = item.map((element)=>{
+        return element.quantity
+    })
+    let initialValue =0
+    let reduced =  itemQuantity.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+    console.log(reduced)
+    setReduce(reduced)
 }
 const handleSubmit = (e)=>{
-    if(parseInt(quantity)<0)
-    {
-        quantity = 0
-        setQuantity(quantity);
-    }
-    setShowForm(false)
-    setShowButton(!showButton)
+    e.preventDefault()
+    console.log(e.target)
+    
+    let newItem = item.map((element)=>{
+        console.log(typeof(element.quantity))
+        if(e.target.id === element.title && typeof(element.quantity) === "number")
+        {
+            element.hidden = false
+        }
+        return element
+    })
+    setItem(newItem)
+    const itemQuantity = item.map((element)=>{
+        return element.quantity
+    })
+    let initialValue=0
+    let reduced =  itemQuantity.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+    console.log(reduced)
+    setReduce(reduced)  
 }
 const handleInputChange = (e)=>{
     
-    e.preventDefault()
-    quantity = e.target.value;
-    setQuantity(quantity)
+    
+    let newItem = item.map((element)=>{
+        if(e.target.id === element.title && typeof(e.target.value) === "number")
+        {
+            element.quantity = parseInt(e.target.value)
+        }
+        return element
+    })
+   setItem(newItem)
 }
 
 return(
+    <>
+    <div className="cart">
+    <img src={cartimg} className="cartimg"></img>
+    <h1 data-testid = "cart">{reducer}</h1>
+    </div>
 <div className = "cards">
 {item.map((items)=>{
-    console.log(items.id)
+    
    
     return (
     <div className="item">        
@@ -88,17 +141,21 @@ return(
         ></Card>
     <div className = "pricetag">
     <button id = {items.title} data-testid = "minus" onClick={decreaseQuantity}>-</button>
-    {showButton && <button id = {items.title} data-testid="price" onClick={showFormToggle}>{items.quantity}</button>}
-        {showForm && (
-        <form onSubmit ={handleSubmit}>
-            <input  data-testid="value2" className="inputNumber" onChange={handleInputChange} type="text" defaultValue={item.quantity} ></input>
+    {!items.hidden && <button id = {items.title} data-testid="price" onClick={showFormToggle}>{items.quantity}</button>}
+      
+        <form id = {items.title} onSubmit ={handleSubmit}>
+            { items.hidden && (
+            <input id = {items.title}  data-testid="value2" className="inputNumber" onChange={handleInputChange} type="text" defaultValue={item.quantity} ></input>
+            )
+            }
         </form>
-        )}         
+            
     <button id = {items.title} data-testid = "plus" onClick={increaseQuantity}>+</button>
+    
 </div>
 </div>
     )                         
         
-})}</div>)}
-
+})}</div>
+</>)}
 export default Cart;

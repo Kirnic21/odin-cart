@@ -16,9 +16,7 @@ import Cart from "../src/components/Cart";
 //
 describe("Cart",()=>{
 
-    it("should display the number based on an array reducer",()=>{
-      expect(screen.getByTestId("cart").textContent).toMatch("2")
-    })
+ 
     //mock an api call
     it("mock api call",async ()=>{
       //mock object
@@ -42,7 +40,22 @@ describe("Cart",()=>{
          expect(spy).toBeCalled()
         }) 
     })
-  
+    it("should display the number based on an array reducer",async ()=>{
+      const user = userEvent.setup();
+      await act(async()=>{
+        await render(<Cart></Cart>)
+      })
+      
+      
+      let button = await  screen.getByTestId("plus")
+      await user.click(button)
+      await user.click(button)
+    
+      await waitFor(()=>{
+        expect(screen.getByTestId("cart").textContent).toMatch("2")
+      })
+      
+    })
     //Render a + and - button within the card
     it("render a + button",async ()=>{
         await render(<Cart></Cart>)
@@ -74,7 +87,7 @@ describe("Cart",()=>{
       let button = await  screen.getByTestId("plus")
       await user.click(button)
       let b = await [a.textContent]
-      console.log(b)
+      
 
       await waitFor(()=>{
       
@@ -95,7 +108,7 @@ describe("Cart",()=>{
       await user.click(button)
       await user.click(button2)
       let b = await [a.textContent]
-      console.log(b)
+      
 
       await waitFor(()=>{
       
@@ -115,7 +128,7 @@ describe("Cart",()=>{
 
     await user.click(button2)
     let b = await [a.textContent]
-    console.log(b)
+    
 
     await waitFor(()=>{
     
@@ -126,14 +139,18 @@ describe("Cart",()=>{
 })
   it("it should change with user input",async ()=>{
      const user = userEvent.setup();
+    
+     
     await act(async()=>{
       render(<Cart></Cart>)
     })
     let a = await  screen.getByTestId("price")
     await user.click(a)
-    let b = await [a.textContent]
+    let b = await screen.getByTestId("value2")
+    await user.type(b,"3")
+  
      await waitFor(()=>{
-        expect(b[0]).toBe("3")
+        expect(b.value).toBe("3")
      })
   })
   //i fucking hate testing
