@@ -1,8 +1,11 @@
 import { useLocation } from "react-router-dom"
 import Card from "./Card"
-import { Link } from "react-router-dom"
+import { Link,  useNavigate
+} from "react-router-dom"
+
 const Payment = (props)=>{
-    const location = useLocation()
+    const navigate = useNavigate();
+    const location = useLocation();
     let checkout = location.state.array.filteredArray
     let initialValue = 0;
     let checkoutReduce = checkout.map((element)=>{
@@ -19,18 +22,17 @@ const Payment = (props)=>{
             <Link className="buttons" to="/">
                         <button className="button">Home</button>
                 </Link>
+                <button className="buttons" onClick={() => navigate(-1)}>Back to Shopping</button>
 
-                     
-            
-                
-                   
             </div>
             </header>
           
         <h1>
             total:
             U$ {checkoutReduce}
+            
         </h1>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><button>Proceed to purchase</button></a>
         <h1>Checkout:</h1>
         <div className="item">
         {checkout.map((element)=>{

@@ -20,6 +20,7 @@ input[type=number] {
     align-content: center;
     display:flex;
     gap:15px; 
+    
 }
 .tokyo{
     object-fit: cover;
@@ -45,7 +46,7 @@ input[type=number] {
 }
 .cart{
     display: flex;
-    flex-direction: row-reverse;
+
 }
 .cartimg{
     width: 50px;

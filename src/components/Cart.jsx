@@ -4,15 +4,14 @@ import cartimg from './../assets/cart.png';
 import { element, number } from "prop-types";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom"
 const Cart = ()=>{
     let navigate = useNavigate()
+    const location = useLocation();
 let [reducer,setReduce] = useState(0);
 
 let [item,setItem] = useState([])
-let [title,setTitle] = useState([])
-let [price,setPrice] = useState([])
-let [image,setImage] = useState([])
-let [quantity,setQuantity] = useState([])
+
 useEffect(()=>{
     const fetchData = async ()=>{
         
@@ -148,7 +147,7 @@ return(
     <div className="cart">
     <img src={cartimg} className="cartimg"></img>
     <h1 data-testid = "cart">{reducer}</h1>
-    <button onClick={FuckThis}></button>
+    <button onClick={FuckThis}> Proceed to Purchase</button>
     </div>
 <div className = "cards">
 {item.map((items)=>{
