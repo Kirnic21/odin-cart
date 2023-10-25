@@ -2,11 +2,17 @@ import { useState,useEffect } from "react";
 import Card from "./Card";
 import cartimg from './../assets/cart.png';
 import { element, number } from "prop-types";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Cart = ()=>{
+    let navigate = useNavigate()
 let [reducer,setReduce] = useState(0);
 
 let [item,setItem] = useState([])
-
+let [title,setTitle] = useState([])
+let [price,setPrice] = useState([])
+let [image,setImage] = useState([])
+let [quantity,setQuantity] = useState([])
 useEffect(()=>{
     const fetchData = async ()=>{
         
@@ -129,17 +135,23 @@ const handleInputChange = (e)=>{
     })
    setItem(newItem)
 }
+const FuckThis  = ()=>{
+    
+    let filteredArray = item.filter((element)=>{
+        return element.quantity>0
+    })
+    navigate('/Payment',{state:{array:{filteredArray}}})
+}
 
 return(
     <>
     <div className="cart">
     <img src={cartimg} className="cartimg"></img>
     <h1 data-testid = "cart">{reducer}</h1>
+    <button onClick={FuckThis}></button>
     </div>
 <div className = "cards">
 {item.map((items)=>{
-    
-   
     return (
     <div className="item">        
         <Card

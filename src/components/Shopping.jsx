@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Cart from "./Cart"
+import { useNavigate } from "react-router-dom"
 function Shopping(){
     return(
         <>
@@ -9,10 +10,8 @@ function Shopping(){
             <Link className="buttons" to="/">
                         <button className="button">Home</button>
                 </Link>
-            
-            <a className="button" href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                <button>Payment</button>
-            </a>                            
+
+                     
             
                 
                    
